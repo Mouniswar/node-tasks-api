@@ -5,7 +5,7 @@ To install all packages run `npm install` command
 ### Starting the Server
 To Start the development Server run `npm run dev` command
 ### Usage
-* `strong` POST /users/
+* **POST /users/**
   This route is used to Signup for a User, To Signup a User, Send the JSON data in the following format
   ```
   {
