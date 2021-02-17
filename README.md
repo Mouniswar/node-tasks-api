@@ -5,7 +5,7 @@ To install all packages run `npm install` command
 ### Starting the Server
 To Start the development Server run `npm run dev` command
 ### Usage
-* **POST /users/**
+* **POST /users/** <br />
   This route is used to Signup for a User, To Signup a User, Send the JSON data in the following format
   ```
   {
@@ -16,7 +16,14 @@ To Start the development Server run `npm run dev` command
     "__v" : 0
   }
   ```
-* `strong` POST /users/login
-* `strong` GET /users/me
-* `strong` PATCH /users/me
-* `strong` DELETE /users/me
+* **POST /users/login** <br />
+  This Route is used for Login. Enter the login credentials that you have used when you signup
+  ```
+  {
+    "name":"reddymouni@gmail.com",
+    "password":"****"
+  }
+  ```
+* **GET /users/me** <br />
+* **PATCH /users/me** <br />
+* **DELETE /users/me** <br />
