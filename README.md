@@ -25,5 +25,8 @@ To Start the development Server run `npm run dev` command
   }
   ```
 * **GET /users/me** <br />
+  This route is used to get the profile details of a authenticated User. 
 * **PATCH /users/me** <br />
+  This route is used for updating the data such as name, email, password of a authenticated User.
 * **DELETE /users/me** <br />
+  This route deletes the User, and also this router delete the all corresponding tasks related to this User.
