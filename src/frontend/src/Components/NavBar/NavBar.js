@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavItem, Navbar, Icon } from 'react-materialize';
+import { NavItem, Navbar, Icon, Link } from 'react-materialize';
 
 
 
@@ -27,15 +27,12 @@ const NavBar = () => {
           sidenav={
             <ul style={{textAlign: "center"}}>
               <li><a href="#">Login</a></li>
-              <li><a href="#">Signup</a></li>
+             
             </ul>
             }
           >
           <NavItem href="" onClick={e => e.preventDefault()}>
-            Login
-          </NavItem>
-          <NavItem href="" onClick={e => e.preventDefault()}>
-            Sign up
+              Login
           </NavItem>
         </Navbar>
       </div>

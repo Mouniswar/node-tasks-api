@@ -1,9 +1,16 @@
 import './App.css';
-import NavBar from './NavBar/NavBar'
+import NavBar from './NavBar/NavBar';
+import LogIn from './Forms/LogIn';
+
+
+
 
 function App() {
   return (
-    <NavBar/>
+    <div>
+      <NavBar />
+      <LogIn/>
+    </div>
   );
 }
 
