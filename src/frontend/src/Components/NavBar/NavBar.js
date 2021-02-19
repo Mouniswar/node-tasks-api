@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {NavItem, Navbar, Icon} from 'react-materialize';
 
 const NavBar = () => {
+    const [showNavbar, setNotShowNavbar] = useState(true);
+    
     return (
         <Navbar
         style={{backgroundColor:'#1976D2'}}
