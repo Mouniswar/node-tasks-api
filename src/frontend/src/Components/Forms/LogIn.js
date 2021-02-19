@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TextInput, Button, Link } from 'react-materialize';
-import SignUp from '../Forms/SignUp'
 
 class LogIn extends Component {
     constructor(props) {
