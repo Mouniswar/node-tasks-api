@@ -14,10 +14,10 @@ class SignUp extends Component {
                label="Email"
             />
             <TextInput
-            value="Password"
+            label="Password"
             />
             <TextInput
-            value="Confirm Password"
+            label="Confirm Password"
             />
              <Button
              node="button"

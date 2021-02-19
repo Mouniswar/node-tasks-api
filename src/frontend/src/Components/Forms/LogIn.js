@@ -15,7 +15,7 @@ class LogIn extends Component {
                label="Email"
             />            
             <TextInput
-            value="Password"
+            label="Password"
             />
              <Button
              node="button"
