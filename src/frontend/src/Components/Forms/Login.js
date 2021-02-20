@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import {TextInput, Row,Col,Button,Icon} from 'react-materialize';
+import {TextInput, Row,Col,Button,Icon, NavItem} from 'react-materialize';
 import axios from 'axios'
 
 const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('');
+    const [authenticate,setAuthenticate] = useState(false);
     console.log("email: ", email);
     console.log("Password: ", password);
+    console.log(authenticate)
 
     const data = {
         'email':email,
@@ -19,20 +21,15 @@ const Login = () => {
             // console.log(res)
             if(res.status == 200) {
                 localStorage.setItem("token", "Bearer " + res.data.token)
-                axios.get('http://localhost:8000/users/me', {
-                    headers: {
-                        'Access-Control-Allow-Origin':'*',
-                        'Access-Control-Allow-Headers':'Origin,X-Requested-With,Content-Type,Accept',
-                        'Access-Control-Allow-Methods':'PATCH,PUT,GET,OPTIONS,DELETE',
-                        'Authorization': localStorage.getItem("token")
-                    }
-                }).then((res) => console.log(res))
-                .catch((e) => console.log(e))
+                setAuthenticate(true)
             }
         })
         .catch(e => console.log(e))
     }
-
+    
+    if(authenticate) {
+        window.location.replace("/")
+     }
 
     return (
             <div style={{width:'50vw', margin:'50px auto'}}>
