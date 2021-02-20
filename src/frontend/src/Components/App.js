@@ -1,17 +1,14 @@
 import './App.css';
-import NavBar from './NavBar/NavBar';
-import LogIn from './Forms/LogIn';
+import Navbar from './NavBar/NavBar';
+import Login from './Forms/Login';
 
-
-
-
-function App() {
+const App = () => {
   return (
     <div>
-      <NavBar />
-      <LogIn/>
+      <Navbar></Navbar>
+      <Login></Login>
     </div>
-  );
+  )
 }
 
 export default App;
