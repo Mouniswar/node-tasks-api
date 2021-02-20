@@ -42,6 +42,7 @@ const Login = () => {
                         validate
                         m={12} s={12}
                         value={email}
+                        validate
                         onChange={
                             (e) => {
                                 setEmail(e.target.value)
@@ -54,6 +55,7 @@ const Login = () => {
                         password
                         id="password"
                         label="Password"
+                        validate
                         m={12} s={12}
                         value={password}
                         onChange={(e) => {
