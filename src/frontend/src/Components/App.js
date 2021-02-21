@@ -1,12 +1,21 @@
 import './App.css';
-import Navbar from './NavBar/NavBar';
-import Login from './Forms/Login';
+import NavBar from './NavBar/NavBar';
+import LogIn from './Forms/LogIn';
+import SignUp from './Forms/SignUp'
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   return (
     <div>
-      <Navbar></Navbar>
-      <Login></Login>
+      <Router>
+      <NavBar/>
+            <Switch>
+                <Route path='/LogIn' exact component={LogIn} />
+                <Route path='/SignUp' exact component={SignUp} />
+                <Redirect to='/'/>
+         </Switch>
+      </Router>
     </div>
   )
 }

@@ -11,28 +11,12 @@ const NavBar = () => {
           style={{backgroundColor:'#1976D2'}}
           alignLinks="right"
           brand={<a className="brand-logo" href="#">Tasks</a>}
-          id="mobile-nav"
-          menuIcon={<Icon>menu</Icon>}
-          options={{
-            draggable: true,
-            edge: 'left',
-            inDuration: 250,
-            onCloseEnd: null,
-            onCloseStart: null,
-            onOpenEnd: null,
-            onOpenStart: null,
-            outDuration: 200,
-            preventScrolling: true
-          }}
-          sidenav={
-            <ul style={{textAlign: "center"}}>
-              <li><a href="#">Login</a></li>
-             
-            </ul>
-            }
-          >
-          <NavItem href="" onClick={e => e.preventDefault()}>
-              Login
+          id="mobile-nav">
+          <NavItem  onClick={e => e.preventDefault()}>
+              LogIn
+          </NavItem>
+          <NavItem  onClick={e => e.preventDefault()}>
+              SignUp
           </NavItem>
         </Navbar>
       </div>

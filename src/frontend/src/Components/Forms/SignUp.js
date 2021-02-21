@@ -24,7 +24,8 @@ class SignUp extends Component {
               style={{
               marginRight: '5px'
               }}
-              waves="light"
+                waves="light"
+                href="/SignUp"
               >
                 SignUp
              </Button>

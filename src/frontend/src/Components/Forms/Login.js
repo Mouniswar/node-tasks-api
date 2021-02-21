@@ -16,7 +16,7 @@ const Login = () => {
     const handleInput =  (e) => {
         axios.post('http://localhost:8000/users/login',data)
         .then((res) => {
-            // console.log(res)
+            console.log(res)
             if(res.status == 200) {
                 localStorage.setItem("token", "Bearer " + res.data.token)
                 axios.get('http://localhost:8000/users/me', {
