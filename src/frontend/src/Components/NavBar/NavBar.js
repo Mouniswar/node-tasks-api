@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Navbar, Icon, NavItem } from 'react-materialize';
+import Login from '../Forms/Login';
+import Signup from '../Forms/Signup';
 
 const NavBar = () => {
   const [data, setData] = useState([]);
@@ -98,10 +100,17 @@ const NavBar = () => {
             </ul>
           }
         >
-          <NavItem href="" onClick={e => e.preventDefault()}>
+          <NavItem href="" onClick={e => {
+            e.preventDefault()
+            return <Login></Login>
+          }}>
             Login
         </NavItem>
-          <NavItem href="" onClick={e => e.preventDefault()}>
+          <NavItem href="" onClick={e =>{
+             e.preventDefault()
+             console.log("event trigged")
+             return <Signup></Signup>
+             }}>
             Signup
         </NavItem>
         </Navbar>

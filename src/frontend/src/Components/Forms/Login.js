@@ -28,8 +28,8 @@ const Login = () => {
     }
     
     if(authenticate) {
-        window.location.replace("/")
-     }
+        window.location.replace("/welcome")
+    }
 
     return (
             <div style={{width:'50vw', margin:'50px auto'}}>
@@ -66,6 +66,12 @@ const Login = () => {
                     <Col s={12}>
                         <Button
                             onClick={handleInput}
+                            onKeyUp={(event) => {
+                                if(event.keyCode === 13) {
+                                    event.preventDefault();
+                                    console.log("enter key was pressed")
+                                }
+                            }}
                             node="a"
                             style={{
                             marginRight: '5px'

@@ -1,15 +1,48 @@
 import './App.css';
 import Navbar from './NavBar/NavBar';
 import Login from './Forms/Login';
+import Signup from './Forms/Signup'
+import Route from './Route'
 
 const App = () => {
   const authToken = localStorage.getItem("token")
+  const signUpToken = localStorage.getItem("token")
 
-  const loginRenderer = authToken == null ? <Login></Login> : ''
-  return (
+  const haveAuthToken = authToken == null ? (
     <div>
       <Navbar></Navbar>
-      {loginRenderer}
+      <Login></Login>
+    </div>
+  ): (
+    <Navbar></Navbar>
+  )
+
+
+  const signupRender = authToken == null ? (
+    <div>
+      <Navbar></Navbar>
+      <Signup></Signup>
+    </div>
+  ) : (
+    <Navbar />
+  )
+
+
+  return (
+    <div>
+      {/* <Navbar></Navbar> */}
+      {/* {loginRenderer} */}
+      {/* {signupRender} */}
+
+      <Route path="/">
+        {haveAuthToken}
+      </Route>
+      <Route path="/signup">
+        {signupRender}
+      </Route>
+      <Route path="/welcome">
+        {haveAuthToken}
+      </Route>
     </div>
   )
 }
