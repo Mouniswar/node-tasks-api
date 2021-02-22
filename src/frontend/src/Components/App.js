@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './NavBar/NavBar';
 import LogIn from './Forms/Login';
-import SignUp from './Forms/SignUp'
+import SignUp from './Forms/SignUp';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 

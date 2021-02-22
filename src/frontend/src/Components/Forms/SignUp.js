@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {TextInput, Button,Row,Col} from 'react-materialize';
 import axios from 'axios'
-import NavItem from '../NavBar/NavItem';
+import NavItem from '../NavBar/'
 
 class Signup extends React.Component {
     state = {
