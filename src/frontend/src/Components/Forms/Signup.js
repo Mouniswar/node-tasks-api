@@ -1,43 +1,74 @@
-import React, {  useState } from 'react';
-import {TextInput, Row,Col,Button,Icon} from 'react-materialize';
+import React, { useState } from 'react';
+import {TextInput, Button,Row,Col} from 'react-materialize';
 import axios from 'axios'
-import NavItem from '../NavBar/NavItem'
+import NavItem from '../NavBar/NavItem';
 
-
-class Login extends React.Component {
+class Signup extends React.Component {
     state = {
-        email: '',
+        email:'',
         password:'',
-        authenticate:false
+        username:'',
+        age: '',
+        success:false
     }
 
 
     handleInput =  (e) => {
         e.preventDefault()
-        const data = {
+        const userdata = {
+            name:this.state.username,
             email:this.state.email,
-            password:this.state.password
-        }
-        axios.post('http://localhost:8000/users/login',data)
-        .then((res) => {
-            console.log(res)
-            if(res.status == 200) {
-                localStorage.setItem("token", "Bearer " + res.data.token)
-                this.setState({authenticate: true})
+            password:this.state.password,
+            age:this.state.age
+        };
 
-                if(this.state.authenticate === true) {
+        console.log(userdata)
+
+        axios.post('http://localhost:8000/users',userdata)
+        .then((res) => {
+           console.log(res)
+            // res.status == 201 ? setSuccess(true) : setSuccess(!true)
+            if(res.status == 201) {
+                localStorage.setItem("token", "Bearer " + res.data.token)
+                this.setState({success:true})
+                if(this.state.success == true) {
                     window.location.replace("/welcome")
                 }
             }
-            
         })
         .catch(e => console.log(e))
     }
 
-    render() {
-        return(
+   
+    render () {
+        return (
             <div style={{width:'50vw', margin:'50px auto'}}>
                 <Row>
+                <Col s={12}>
+                        <TextInput 
+                        id="name"
+                        label="Name"
+                        m={6} s={6}
+                        value={this.state.username}
+                        onChange={
+                            (e) => {
+                                this.setState({username:e.target.value})
+                            }
+                        }
+                        />
+                         <TextInput 
+                        id="age"
+                        label="Age"
+                        m={6} s={6}
+                        value={this.state.age}
+                        validate
+                        onChange={
+                            (e) => {
+                                this.setState({age: Number(e.target.value)})
+                            }
+                        }
+                        />
+                    </Col>
                     <Col s={12}>
                         <TextInput 
                         email
@@ -63,38 +94,33 @@ class Login extends React.Component {
                         m={12} s={12}
                         value={this.state.password}
                         onChange={(e) => {
-                            this.setState({password: e.target.value})
+                            this.setState({password:e.target.value})
                         }}
                         />
                     </Col>
                     <Col s={12}>
                         <Button
                             onClick={this.handleInput}
-                            onKeyUp={(event) => {
-                                if(event.keyCode === 13) {
-                                    event.preventDefault();
-                                    console.log("enter key was pressed")
-                                }
-                            }}
                             node="a"
                             style={{
                             marginRight: '5px'
                             }}
                             waves="light"
                         >
-                            Login
+                            Create an account
                         </Button>
                     </Col>
                     <Col style={{marginTop:'10px'}}>
                         <span>Don't Have an Account? </span>
-                        <span><NavItem href="/signup">Sign Up
+                        <span><NavItem href="/">Login
                          Here</NavItem></span>
                     </Col>
                 </Row>
-            </div>
+        </div>
         )
     }
 }
 
 
-export default Login;
+
+export default Signup;
