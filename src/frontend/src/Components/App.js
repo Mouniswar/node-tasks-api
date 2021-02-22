@@ -4,12 +4,13 @@ import Login from './Forms/Login';
 import Signup from './Forms/Signup'
 import Route from './Route'
 import Header from './NavBar/Header'
-
+import Main from './NavBar/Main'
+import axios from 'axios';
 
 
 const App = () => {
   const authToken = localStorage.getItem("token")
-  const signUpToken = localStorage.getItem("token")
+
 
   const haveAuthToken = authToken == null ? (
     <div>
@@ -45,6 +46,7 @@ const App = () => {
       </Route>
       <Route path="/welcome">
         {haveAuthToken}
+        <Main></Main>
       </Route>
     </div>
   )
