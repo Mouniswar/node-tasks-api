@@ -3,6 +3,9 @@ import Navbar from './NavBar/NavBar';
 import Login from './Forms/Login';
 import Signup from './Forms/Signup'
 import Route from './Route'
+import Header from './NavBar/Header'
+
+
 
 const App = () => {
   const authToken = localStorage.getItem("token")

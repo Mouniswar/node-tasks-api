@@ -1,54 +1,58 @@
 import React, { useState } from 'react';
 import {TextInput, Button,Row,Col} from 'react-materialize';
-import Login from './Login'
 import axios from 'axios'
+import NavItem from '../NavBar/NavItem';
 
-const Signup = function() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [age, setAge] = useState('')
-    const [success,setSuccess] = useState(false)
+class Signup extends React.Component {
+    state = {
+        email:'',
+        password:'',
+        username:'',
+        age: '',
+        success:false
+    }
 
-    const data = {
-        'name':username,
-        'age':age,
-        'email':email,
-        'password':password
-    };
 
-    console.log('Data: ',data)
+    handleInput =  (e) => {
+        e.preventDefault()
+        const userdata = {
+            name:this.state.username,
+            email:this.state.email,
+            password:this.state.password,
+            age:this.state.age
+        };
 
-    const handleInput =  (e) => {
-        axios.post('http://localhost:8000/users',data)
+        console.log(userdata)
+
+        axios.post('http://localhost:8000/users',userdata)
         .then((res) => {
            console.log(res)
             // res.status == 201 ? setSuccess(true) : setSuccess(!true)
             if(res.status == 201) {
                 localStorage.setItem("token", "Bearer " + res.data.token)
-                setSuccess(true)
+                this.setState({success:true})
+                if(this.state.success == true) {
+                    window.location.replace("/welcome")
+                }
             }
         })
         .catch(e => console.log(e))
     }
 
-    if(success) {
-        window.location.replace("/welcome")
-    }
-    
-
-    return (
-        <div style={{width:'50vw', margin:'50px auto'}}>
+   
+    render () {
+        return (
+            <div style={{width:'50vw', margin:'50px auto'}}>
                 <Row>
                 <Col s={12}>
                         <TextInput 
                         id="name"
                         label="Name"
                         m={6} s={6}
-                        value={username}
+                        value={this.state.username}
                         onChange={
                             (e) => {
-                                setUsername(e.target.value)
+                                this.setState({username:e.target.value})
                             }
                         }
                         />
@@ -56,11 +60,11 @@ const Signup = function() {
                         id="age"
                         label="Age"
                         m={6} s={6}
-                        value={age}
+                        value={this.state.age}
                         validate
                         onChange={
                             (e) => {
-                                setAge(Number(e.target.value))
+                                this.setState({age: Number(e.target.value)})
                             }
                         }
                         />
@@ -72,11 +76,11 @@ const Signup = function() {
                         label="Email"
                         validate
                         m={12} s={12}
-                        value={email}
+                        value={this.state.email}
                         validate
                         onChange={
                             (e) => {
-                                setEmail(e.target.value)
+                                this.setState({email:e.target.value})
                             }
                         }
                         />
@@ -88,15 +92,15 @@ const Signup = function() {
                         label="Password"
                         validate
                         m={12} s={12}
-                        value={password}
+                        value={this.state.password}
                         onChange={(e) => {
-                            setPassword(e.target.value)
+                            this.setState({password:e.target.value})
                         }}
                         />
                     </Col>
                     <Col s={12}>
                         <Button
-                            onClick={handleInput}
+                            onClick={this.handleInput}
                             node="a"
                             style={{
                             marginRight: '5px'
@@ -108,12 +112,15 @@ const Signup = function() {
                     </Col>
                     <Col style={{marginTop:'10px'}}>
                         <span>Don't Have an Account? </span>
-                        <span><a href="#">Login
-                         Here</a></span>
+                        <span><NavItem href="/">Login
+                         Here</NavItem></span>
                     </Col>
                 </Row>
         </div>
-    );
+        )
+    }
 }
+
+
 
 export default Signup;

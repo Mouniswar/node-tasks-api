@@ -1,6 +1,8 @@
+import e from 'cors';
 import React from 'react';
  
-const Link = ({ className, href, children}) => {
+const NavItem = ({ className, href, children}) => {
+
     const onClick = (event) => {
         event.preventDefault();
         window.history.pushState({}, '', href);
@@ -16,4 +18,4 @@ const Link = ({ className, href, children}) => {
     );
 }
 
-export default Link;
+export default NavItem;

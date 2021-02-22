@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Navbar, Icon, NavItem } from 'react-materialize';
-import Login from '../Forms/Login';
-import Signup from '../Forms/Signup';
+import { Navbar, Icon, Dropdown, Divider } from 'react-materialize';
+import NavItem from './NavItem'
+
 
 const NavBar = () => {
   const [data, setData] = useState([]);
@@ -29,10 +29,12 @@ const NavBar = () => {
         setAuthtoken(localStorage.getItem("token"))
       }).catch((e) => console.log(e))
     }
-  },[])
+  }, [])
+
+  const token = localStorage.getItem("token")
 
   const navbarRender = (
-    isAuthenticated == true && authToken!= null? (
+    isAuthenticated == true && authToken != null ? (
       <Navbar
         style={{ backgroundColor: '#1976D2' }}
         alignLinks="right"
@@ -57,71 +59,82 @@ const NavBar = () => {
           </ul>
         }
       >
-        <NavItem href="" onClick={e => e.preventDefault()}>
+        <NavItem href="" id="logout" token={token} onClick={e => e.preventDefault()}>
           <Icon right>
             account_circle
           </Icon>
           Hi! {data.data.name}
         </NavItem>
-        <NavItem href="" onClick={e => {
-            e.preventDefault()
-            localStorage.removeItem("token")
-            window.location.replace("/")
-          }
-          }>
-          <Icon right>
-            power_settings_new
-          </Icon>
-          Logout
-        </NavItem>
-      </Navbar>
-    ) : (
-        <Navbar
-          style={{ backgroundColor: '#1976D2' }}
-          alignLinks="right"
-          brand={<a className="brand-logo" href="#" style={{ margin: '0 20px' }}>Tasks</a>}
-          id="mobile-nav"
-          menuIcon={<Icon>menu</Icon>}
+        
+        <Dropdown
+          id="Dropdown_6"
           options={{
-            draggable: true,
-            edge: 'left',
-            inDuration: 250,
+            alignment: 'left',
+            autoTrigger: true,
+            closeOnClick: true,
+            constrainWidth: true,
+            container: null,
+            coverTrigger: true,
+            hover: false,
+            inDuration: 150,
             onCloseEnd: null,
             onCloseStart: null,
             onOpenEnd: null,
             onOpenStart: null,
-            outDuration: 200,
-            preventScrolling: true
+            outDuration: 250
           }}
-          sidenav={
-            <ul style={{ textAlign: "center" }}>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Signup</a></li>
-            </ul>
-          }
+          trigger={<a href="#!">{' '}<Icon right>arrow_drop_down</Icon></a>}
         >
-          <NavItem href="" onClick={e => {
+          <a href="#" onClick={e => {
             e.preventDefault()
-            return <Login></Login>
+            localStorage.removeItem("token")
+            window.location.replace("/")
           }}>
-            Login
+            <Icon>power_settings_new</Icon>
+            Logout
+          </a>
+        </Dropdown>
+      </Navbar >
+    ) : (
+  <Navbar
+    style={{ backgroundColor: '#1976D2' }}
+    alignLinks="right"
+    brand={<a className="brand-logo" href="#" style={{ margin: '0 20px' }}>Tasks</a>}
+    id="mobile-nav"
+    menuIcon={<Icon>menu</Icon>}
+    options={{
+      draggable: true,
+      edge: 'left',
+      inDuration: 250,
+      onCloseEnd: null,
+      onCloseStart: null,
+      onOpenEnd: null,
+      onOpenStart: null,
+      outDuration: 200,
+      preventScrolling: true
+    }}
+    sidenav={
+      <ul style={{ textAlign: "center" }}>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Signup</a></li>
+      </ul>
+    }
+  >
+    <NavItem href="/">
+      Login
         </NavItem>
-          <NavItem href="" onClick={e =>{
-             e.preventDefault()
-             console.log("event trigged")
-             return <Signup></Signup>
-             }}>
-            Signup
+    <NavItem href="/signup">
+      Signup
         </NavItem>
-        </Navbar>
-      )
+  </Navbar>
+)
   )
 
-  return(
-    <div>
-      {navbarRender}
-    </div>
-  )
+return (
+  <div>
+    {navbarRender}
+  </div>
+)
 }
 
 export default NavBar;
