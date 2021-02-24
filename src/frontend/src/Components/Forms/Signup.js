@@ -112,7 +112,7 @@ class Signup extends React.Component {
                     </Col>
                     <Col style={{marginTop:'10px'}}>
                         <span>Don't Have an Account? </span>
-                        <span><NavItem href="/">Login
+                        <span><NavItem href="/login">Login
                          Here</NavItem></span>
                     </Col>
                 </Row>
