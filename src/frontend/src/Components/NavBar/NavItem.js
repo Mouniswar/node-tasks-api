@@ -1,4 +1,3 @@
-import e from 'cors';
 import React from 'react';
  
 const NavItem = ({ className, href, children}) => {
@@ -11,8 +10,7 @@ const NavItem = ({ className, href, children}) => {
         window.dispatchEvent(navEvent);
     }
 
-    return (
-        <a onClick={onClick} className={className} href={href}>
+    return (<a onClick={onClick} className={className} href="true">
             {children}
         </a>
     );

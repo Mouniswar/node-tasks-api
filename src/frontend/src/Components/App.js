@@ -1,9 +1,9 @@
 import './App.css';
 import NavBar from './NavBar/NavBar';
-import LogIn from './Forms/Login';
-import SignUp from './Forms/SignUp';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import LogIn from './Forms/LogIn';
+import SignUp from './Forms/SignUp'
+import { Redirect,  Switch, BrowserRouter } from 'react-router-dom';
+import Route from './Route'
 
 const App = () => {
   const authToken = localStorage.getItem("token")
@@ -11,28 +11,29 @@ const App = () => {
 
   const haveAuthToken = authToken == null ? (
     <div>
-      <Router>
-      <NavBar/>
-            <Switch>
-                <Route path='/LogIn' exact component={LogIn} />
-                <Route path='/SignUp' exact component={SignUp} />
+    
+      <NavBar />
+      <BrowserRouter>
+      <Switch>
+                <Route path='/login' exact component={LogIn} />
+                <Route path='/signup' exact component={SignUp} />
                 <Redirect to='/'/>
          </Switch>
-      </Router>
+      </BrowserRouter>
     </div>
   ): (
-    <Navbar></Navbar>
+    <NavBar/>
   )
 
 
-  const signupRender = authToken == null ? (
-    <div>
-      <Navbar></Navbar>
-      <Signup></Signup>
-    </div>
-  ) : (
-    <Navbar />
-  )
+  // const signupRender = authToken == null ? (
+  //   <div>
+  //     <NavBar/>
+  //     <SignUp/>
+  //   </div>
+  // ) : (
+  //   <NavBar />
+  // )
 
 
   return (
@@ -45,9 +46,9 @@ const App = () => {
         {haveAuthToken}
       </Route>
       <Route path="/signup">
-        {signupRender}
+        {signUpToken}
       </Route>
-      <Route path="/welcome">
+      <Route path="/login">
         {haveAuthToken}
       </Route>
     </div>

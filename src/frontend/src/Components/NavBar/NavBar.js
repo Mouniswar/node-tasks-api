@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavItem, Navbar, Icon, Link } from 'react-materialize';
+import { NavItem, Navbar } from 'react-materialize';
 
 
 
@@ -12,10 +12,10 @@ const NavBar = () => {
           alignLinks="right"
           brand={<a className="brand-logo" href="#">Tasks</a>}
           id="mobile-nav">
-          <NavItem  onClick={e => e.preventDefault()}>
+          <NavItem  onClick={e => e.preventDefault()} href="/login">
               LogIn
           </NavItem>
-          <NavItem  onClick={e => e.preventDefault()}>
+          <NavItem  onClick={e => e.preventDefault()} href="/signup">
               SignUp
           </NavItem>
         </Navbar>

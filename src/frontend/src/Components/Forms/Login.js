@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React from 'react';
 import {TextInput, Row,Col,Button,Icon} from 'react-materialize';
 import axios from 'axios'
 import NavItem from '../NavBar/NavItem'
@@ -26,7 +26,7 @@ class Login extends React.Component {
                 this.setState({authenticate: true})
 
                 if(this.state.authenticate === true) {
-                    window.location.replace("/welcome")
+                    window.location.replace("/login")
                 }
             }
             

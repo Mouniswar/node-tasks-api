@@ -32,7 +32,7 @@ class Signup extends React.Component {
                 localStorage.setItem("token", "Bearer " + res.data.token)
                 this.setState({success:true})
                 if(this.state.success == true) {
-                    window.location.replace("/welcome")
+                    window.location.replace("/")
                 }
             }
         })
