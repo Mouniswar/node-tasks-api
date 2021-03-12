@@ -2,10 +2,11 @@ const express = require('express')
 require('./db/mongoose')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
+// const cors = require('cors')
 
 
 const app = express()
-const port = process.env.PORT || 8000
+const port = process.env.PORT
 
 //Middleware
 // app.use((req,res,next) => {
@@ -20,9 +21,38 @@ const port = process.env.PORT || 8000
 //     res.status(503).send('Currently in Maintainence mode. Please comeback later')
 // })
 
+const multer = require('multer')
+const upload = multer({
+    dest:'images',
+    limits:{
+        fileSize:1000000
+    },
+    fileFilter(req, file, cb) {
+        if(!file.originalname.match(/\.(doc|docx|pdf)$/)) {
+            return cb(new Error('please upload a Word document'))
+        }
+
+        cb(undefined,true)
+        // cb(new Error('File must be a PDF'))
+        // cb(undefined, true)
+        // cb(undefined, false)
+    }
+})
+
+
+
+app.post('/upload', upload.single('upload'), (req,res) => {
+    res.send()
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
+
+
 app.use(express.json())
+// app.use(cors())
 app.use(userRouter)
 app.use(taskRouter)
+
 
 
  
@@ -30,17 +60,3 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
-const Task = require('./models/task')
-const User = require('./models/user')
-
-const main = async() => {
-    // const task = await Task.findById('602cef2a3fcf701e5446b884')
-    // await task.populate('owner').execPopulate()
-    // console.log(task.owner)
-
-    const user = await User.findById('602ce960e6460327c01438c3')
-    await user.populate('tasks').execPopulate()
-    console.log(user.tasks)
-}
-
-main()
